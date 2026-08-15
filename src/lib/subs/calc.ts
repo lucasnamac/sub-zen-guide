@@ -48,7 +48,7 @@ export const isActive = (sub: Subscription) => sub.status === "ativa";
 
 export function parseDate(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
-  return new Date(y, (m || 1) - 1, d || 1);
+  return new Date(y ?? 1970, (m ?? 1) - 1, d ?? 1);
 }
 
 export function toISO(date: Date) {
@@ -141,8 +141,8 @@ export function monthTotal(subs: Subscription[], s: Settings, ref: Date) {
 export function priceChange(sub: Subscription) {
   if (sub.priceHistory.length < 2) return 0;
   const sorted = [...sub.priceHistory].sort((a, b) => a.date.localeCompare(b.date));
-  const first = sorted[0].amount;
-  const last = sorted[sorted.length - 1].amount;
+  const first = sorted[0]?.amount ?? 0;
+  const last = sorted[sorted.length - 1]?.amount ?? 0;
   if (!first) return 0;
   return ((last - first) / first) * 100;
 }
