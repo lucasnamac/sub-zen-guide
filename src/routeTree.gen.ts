@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AjustesRouteImport } from './routes/ajustes'
+import { Route as AssinaturasRouteImport } from './routes/assinaturas'
+import { Route as CalendarioRouteImport } from './routes/calendario'
+import { Route as RaioXRouteImport } from './routes/raio-x'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AjustesRoute = AjustesRouteImport.update({
+  id: '/ajustes',
+  path: '/ajustes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssinaturasRoute = AssinaturasRouteImport.update({
+  id: '/assinaturas',
+  path: '/assinaturas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarioRoute = CalendarioRouteImport.update({
+  id: '/calendario',
+  path: '/calendario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RaioXRoute = RaioXRouteImport.update({
+  id: '/raio-x',
+  path: '/raio-x',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ajustes': typeof AjustesRoute
+  '/assinaturas': typeof AssinaturasRoute
+  '/calendario': typeof CalendarioRoute
+  '/raio-x': typeof RaioXRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ajustes': typeof AjustesRoute
+  '/assinaturas': typeof AssinaturasRoute
+  '/calendario': typeof CalendarioRoute
+  '/raio-x': typeof RaioXRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ajustes': typeof AjustesRoute
+  '/assinaturas': typeof AssinaturasRoute
+  '/calendario': typeof CalendarioRoute
+  '/raio-x': typeof RaioXRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ajustes'
+    | '/assinaturas'
+    | '/calendario'
+    | '/raio-x'
+    | '/relatorios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ajustes'
+    | '/assinaturas'
+    | '/calendario'
+    | '/raio-x'
+    | '/relatorios'
+  id:
+    | '__root__'
+    | '/'
+    | '/ajustes'
+    | '/assinaturas'
+    | '/calendario'
+    | '/raio-x'
+    | '/relatorios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AjustesRoute: typeof AjustesRoute
+  AssinaturasRoute: typeof AssinaturasRoute
+  CalendarioRoute: typeof CalendarioRoute
+  RaioXRoute: typeof RaioXRoute
+  RelatoriosRoute: typeof RelatoriosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ajustes': {
+      id: '/ajustes'
+      path: '/ajustes'
+      fullPath: '/ajustes'
+      preLoaderRoute: typeof AjustesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assinaturas': {
+      id: '/assinaturas'
+      path: '/assinaturas'
+      fullPath: '/assinaturas'
+      preLoaderRoute: typeof AssinaturasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendario': {
+      id: '/calendario'
+      path: '/calendario'
+      fullPath: '/calendario'
+      preLoaderRoute: typeof CalendarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/raio-x': {
+      id: '/raio-x'
+      path: '/raio-x'
+      fullPath: '/raio-x'
+      preLoaderRoute: typeof RaioXRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AjustesRoute: AjustesRoute,
+  AssinaturasRoute: AssinaturasRoute,
+  CalendarioRoute: CalendarioRoute,
+  RaioXRoute: RaioXRoute,
+  RelatoriosRoute: RelatoriosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
