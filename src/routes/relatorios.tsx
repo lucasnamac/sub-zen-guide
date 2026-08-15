@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  Bar,
-  BarChart,
   Cell,
   Line,
   LineChart,
@@ -145,24 +143,19 @@ function Relatorios() {
 
       <section className="surface-card p-4">
         <p className="text-sm font-medium">Assinaturas mais caras</p>
-        <div className="mt-2 h-48">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={maisCaras} layout="vertical" margin={{ left: 40 }}>
-              <XAxis type="number" hide />
-              <Tooltip
-                cursor={{ fill: "var(--color-accent)" }}
-                contentStyle={{ background: "var(--color-card)", border: "1px solid var(--color-border)", borderRadius: 12 }}
-                formatter={(v: number) => brl(v)}
-              />
-              <Bar dataKey="valor" fill="var(--color-primary)" radius={6} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-        <ul className="space-y-1 text-sm">
+        <ul className="mt-3 space-y-3 text-sm">
           {maisCaras.map((m) => (
-            <li key={m.name} className="flex justify-between text-muted-foreground">
-              <span>{m.name}</span>
-              <span className="font-medium text-foreground">{brl(m.valor)}/mês</span>
+            <li key={m.name}>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">{m.name}</span>
+                <span className="font-medium">{brl(m.valor)}/mês</span>
+              </div>
+              <div className="mt-1 h-2 rounded-full bg-secondary">
+                <div
+                  className="accent-gradient h-2 rounded-full"
+                  style={{ width: `${(m.valor / (maisCaras[0]?.valor || 1)) * 100}%` }}
+                />
+              </div>
             </li>
           ))}
         </ul>
