@@ -45,9 +45,15 @@ export function SubscriptionForm({ sub, trigger }: Props) {
     setForm((f) => ({ ...f, [k]: v }));
 
   function submit() {
-    if (!form.name.trim()) return toast.error("Informe o nome da assinatura.");
+    if (!form.name.trim()) {
+      toast.error("Informe o nome da assinatura.");
+      return;
+    }
     const amount = Number(String(form.amount).replace(",", "."));
-    if (!amount || amount <= 0) return toast.error("Informe um valor válido.");
+    if (!amount || amount <= 0) {
+      toast.error("Informe um valor válido.");
+      return;
+    }
 
     if (sub) {
       const priceHistory =
