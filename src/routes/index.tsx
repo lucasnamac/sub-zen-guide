@@ -171,7 +171,7 @@ function Dashboard() {
         <p className="text-sm font-medium">Últimos 6 meses</p>
         <div className="mt-4 flex h-32 items-end gap-2">
           {historico.map((h) => (
-            <div key={h.label} className="flex flex-1 flex-col items-center gap-2">
+            <div key={h.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
               <div
                 className="accent-gradient w-full rounded-t-lg"
                 style={{ height: `${Math.max(6, (h.total / maxHist) * 100)}%` }}
